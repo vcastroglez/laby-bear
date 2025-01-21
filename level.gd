@@ -15,7 +15,6 @@ func _ready():
 	
 func _input(event):
 	if event is InputEventKey:
-		print(event.keycode)
 		if event.pressed && event.keycode == 32 :
 			await generate_everything()
 		if event.pressed && event.keycode == 77 :
@@ -31,10 +30,14 @@ func _input(event):
 
 func generate_everything():
 	start_position = Vector2i(-x_size,y_size)
+	end_position = Vector2i(x_size, -y_size)
 	await paint_outline()
 	await paint_inside()
 	await generate_level()
 	$the_guy.position = $TileMap.map_to_local(start_position)
+	paint_path(end_position)
+	$end.position = $TileMap.map_to_local(end_position)
+	$end/shape.shape.radius = $TileMap.map_to_local(Vector2i.RIGHT).x / 2
 	
 func paint_outline():
 	var outline = Vector2i(10 ,23)
@@ -94,7 +97,7 @@ func generate_level():
 		going.push_back(current_position)
 		paint_path(current_position)
 		$the_guy.position = $TileMap.map_to_local(current_position)
-		
+	
 func nowhere_to_go(target_position) :
 	if !has_empty_neighbors(target_position, Vector2i.UP) && !is_out_of_bound(target_position + Vector2i.UP) :
 		return Vector2i.UP
@@ -157,3 +160,8 @@ func is_out_of_bound(target_position):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+
+func _on_end_area_entered(area):
+	print(area)
+	generate_everything()
