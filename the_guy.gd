@@ -1,9 +1,8 @@
 extends CharacterBody2D
 
 
-const SPEED = 300.0
-var dragging = false
-var mouse_inside = false
+const SPEED = 3000.0
+var mouse_position = false
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -22,21 +21,15 @@ func _physics_process(delta):
 	else:
 		velocity.y = move_toward(velocity.y, 0, SPEED)
 	
-	if dragging && mouse_inside:
-		position = get_global_mouse_position()
+	if mouse_position:
+		var mouse_pos = get_global_mouse_position()
+		var direction = global_position.direction_to(mouse_pos)
+		velocity = direction * SPEED * delta
 	move_and_slide()
 
 
-func _on_input_event(viewport, event, shape_idx):
-	if(event is InputEventMouseButton):
-		dragging = event.pressed
+func _input(event):
+	print(event)
+	if(event is InputEventMouseMotion):
+		mouse_position = event.position
 		return
-
-
-func _on_mouse_exited():
-	mouse_inside = false
-	dragging = false
-
-
-func _on_mouse_entered():
-	mouse_inside = true

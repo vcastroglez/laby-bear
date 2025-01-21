@@ -1146,8 +1146,6 @@ script = ExtResource("1_k843q")
 [node name="the_guy" parent="." instance=ExtResource("1_woj5e")]
 position = Vector2(-967, -20)
 
-[node name="camera" type="Camera2D" parent="."]
-
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_7wrxm")
 format = 2

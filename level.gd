@@ -20,12 +20,10 @@ func _input(event):
 		if event.pressed && event.keycode == 77 :
 			x_size = x_size + (x_size * 0.1)
 			y_size = y_size + (y_size * 0.1)
-			$camera.zoom = $camera.zoom - ($camera.zoom * 0.1)
 			await generate_everything()
 		if event.pressed && event.keycode == 78 :
 			x_size = x_size - (x_size * 0.1)
 			y_size = y_size -(y_size * 0.1)
-			$camera.zoom = $camera.zoom + ($camera.zoom * 0.1)
 			await generate_everything()
 
 func generate_everything():

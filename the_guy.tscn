@@ -20,6 +20,9 @@ texture = ExtResource("2_rg24k")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ph7sl")
 
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(9, 9)
+
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
