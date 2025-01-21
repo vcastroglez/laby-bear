@@ -1,8 +1,8 @@
 extends Node2D
 
 #Size in tiles
-var x_size = 20 
-var y_size = 15
+var x_size = 5 
+var y_size = 5
 
 #down down corner
 var start_position = Vector2i.ZERO
@@ -160,6 +160,18 @@ func _process(delta):
 	pass
 
 
-func _on_end_area_entered(area):
-	print(area)
-	generate_everything()
+func _on_zoom_out_pressed():
+	if $the_guy/Camera2D.zoom.x <= 1 :
+		return
+	$the_guy/Camera2D.zoom = $the_guy/Camera2D.zoom - Vector2(1,1)
+
+
+func _on_zoom_in_pressed():
+	if $the_guy/Camera2D.zoom.x >= 5 :
+		return
+	$the_guy/Camera2D.zoom = $the_guy/Camera2D.zoom + Vector2(1,1)
+
+
+func _on_end_body_entered(body):
+	if body.name == 'the_guy' :
+		generate_everything()

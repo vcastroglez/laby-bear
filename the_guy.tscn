@@ -12,6 +12,10 @@ motion_mode = 1
 slide_on_ceiling = false
 script = ExtResource("1_oimrc")
 
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
+editor_draw_limits = true
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 3.14159
 scale = Vector2(-0.0181637, -0.0160335)
@@ -19,9 +23,6 @@ texture = ExtResource("2_rg24k")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ph7sl")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(9, 9)
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

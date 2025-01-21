@@ -1,7 +1,10 @@
 extends CharacterBody2D
 
 
-const SPEED = 3000.0
+const SPEED = 5000.0
+const CAMERA_WIDTH = 800
+const CAMERA_HEIGHT = 260
+
 var mouse_position = false
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -24,12 +27,16 @@ func _physics_process(delta):
 	if mouse_position:
 		var mouse_pos = get_global_mouse_position()
 		var direction = global_position.direction_to(mouse_pos)
-		velocity = direction * SPEED * delta
+		velocity = direction * SPEED
+	velocity = (velocity - velocity * 0.1) * delta
+	#velocity -= velocity * 0.1
 	move_and_slide()
 
 
 func _input(event):
-	print(event)
 	if(event is InputEventMouseMotion):
-		mouse_position = event.position
+		if event.pressure:
+			mouse_position = event.position
+		else: 
+			mouse_position = false
 		return
