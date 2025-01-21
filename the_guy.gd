@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-const SPEED = 5000.0
+const SPEED = 7000.0
 const CAMERA_WIDTH = 800
 const CAMERA_HEIGHT = 260
 

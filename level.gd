@@ -27,6 +27,8 @@ func _input(event):
 			await generate_everything()
 
 func generate_everything():
+	x_size += 1
+	y_size += 1
 	start_position = Vector2i(-x_size,y_size)
 	end_position = Vector2i(x_size, -y_size)
 	await paint_outline()
